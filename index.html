@@ -2,94 +2,106 @@
 <html>
 
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBvEgDexqUNE0nO_ZE9zJhcb3zSDrm_8Nw",
-    authDomain: "imageuploader-3b27c.firebaseapp.com",
-    databaseURL: "https://imageuploader-3b27c.firebaseio.com",
-    projectId: "imageuploader-3b27c",
-    storageBucket: "imageuploader-3b27c.appspot.com",
-    messagingSenderId: "285832792911"
-  };
-  firebase.initializeApp(config);
+<script type="text/javascript" src="js/connectFirebaseAPI.js"></script>
+<script type="text/javascript" src="js/imageHandler.js"></script>
 
-  // Get a reference to the storage service, which is used to create references in your storage bucket
-  var storage = firebase.storage();
+<script type="text/javascript">
 
-  function UploadFile() {
-    input = document.getElementById('profile_pic');
-    thisFile = input.files[0];
-    thisFileName = thisFile.name;
+  var list_subkey = ["Name",
+                    "Email",
+                    "Date",
+                    "Type"
+                    ]
+  var list_cardkey = ["Name",
+                      "CompanyName",
+                      "ServiceField",
+                      "Position",
+                      "Contact",
+                      "Address",
+                      "WorkingHour",
+                      "CoverageArea",
+                      "AdditionalTags"
+                      ]
 
-    var file = thisFile // use the Blob or File API
+  function prepareUploadSubForm(){
+    for (i = 0; i < list_subkey.length; i++) { 
+      var mykey = list_subkey[i];
+      var label = document.createElement("label");
+      label.setAttribute('for', mykey);
+      label.innerHTML = mykey + ":";
+      var input = document.createElement("input");
+      input.setAttribute('type', 'text');
+      input.setAttribute('id', mykey);
+      var br = document.createElement("br");
+      
+      var parent = document.getElementById("SubmitterInfoPlaceholder");
+      parent.appendChild(label);
+      parent.appendChild(input);
+      parent.appendChild(br);
+    }
+  }
 
-    // Create a root reference
-    var storageRef = firebase.storage().ref();
-    
-    // Upload the file and metadata
-    //var uploadTask = storageRef.child('download.jpg').put(file, metadata);
-    var uploadTask = storageRef.child(thisFileName).put(file);
-    
-    // ref.put(file).then(function(snapshot) {
-    //   console.log('Uploaded a blob or file!');
-    // });
+  function prepareUploadCardForm(){
+    for (i = 0; i < list_cardkey.length; i++) { 
+      var mykey = list_cardkey[i];
+      var label = document.createElement("label");
+      label.setAttribute('for', mykey);
+      label.innerHTML = mykey + ":";
+      var input = document.createElement("input");
+      input.setAttribute('type', 'text');
+      input.setAttribute('id', mykey);
+      var br = document.createElement("br");
+      
+      var parent = document.getElementById("CardInfoPlaceholder");
+      parent.appendChild(label);
+      parent.appendChild(input);
+      parent.appendChild(br);
+    }
+  }
 
-    // Register three observers:
-    // 1. 'state_changed' observer, called any time the state changes
-    // 2. Error observer, called on failure
-    // 3. Completion observer, called on successful completion
-    uploadTask.on('state_changed', function(snapshot){
-      // Observe state change events such as progress, pause, and resume
-      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-      switch (snapshot.state) {
-        case firebase.storage.TaskState.PAUSED: // or 'paused'
-          console.log('Upload is paused');
-          break;
-        case firebase.storage.TaskState.RUNNING: // or 'running'
-          console.log('Upload is running');
-          break;
-      }
-    }, function(error) {
-      // Handle unsuccessful uploads
-      alert("Upload Error");
-    }, function() {
-      // Handle successful uploads on complete
-      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-      var downloadURL = uploadTask.snapshot.downloadURL;
+  //Firebase Database Handling
+  function writeUserData(userId, name, email) {
+    var dbtype = "userbase";
+    firebase.database().ref('users/' + userId).set({
+      type: "dbtype",
+      username: name,
+      email: email
     });
   }
 
-  function showimage() {
-     var storageRef = firebase.storage().ref();
-     var Filter = document.getElementById ("filter");
-     var filterString = Filter.value;
-     storageRef.child(filterString).getDownloadURL().then(function(url) {
-         var test = url;
-         document.querySelector('img').src = test;
-         var loading = document.getElementById ("showimage");
-         loading.style.visibility = "visible";
-     }).catch(function(error) {
-     });
-   }
 </script>
 
 <head>
 	<title>This is Title</title>
 </head>
 <body>
-	<h1>Welcome to my APP</h1>
+	<h1>Welcome to My App</h1>
 </body>
+  <h1>Upload Name Card</h1>
   <div>
     <label for="profile_pic">Choose file to upload</label>
     <input type="file" id="profile_pic" name="profile_pic"
           accept=".jpg, .jpeg, .png">
   </div>
+    
+    <h2>Submitter Information:</h2>
+    <button class="cls_button_pre" onclick="prepareUploadSubForm()">Prepare Upload Submitter Information</button>
+    <div id="SubmitterInfoPlaceholder"></div>
+    
+    <h2>Card Information:</h2>
+    <button class="cls_button_pre" onclick="prepareUploadCardForm()">Prepare Card Information</button>
+    <div id="CardInfoPlaceholder"></div>
+
+    <br/>
+    <input type="checkbox" name="vehicle" value="Car">I hereby giving information consent to this web application for items and information I have submitted.
+    <br/>
+    <br/>
   <div>
     <button class="cls_button1" onclick="UploadFile()">Upload</button>
   </div>
+
+  <br/>
+  <h1>Search For Name Card</h1>
   <div>
     <button class="cls_button2" onclick="showimage()">Search</button>
   </div>
