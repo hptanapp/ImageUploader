@@ -35,6 +35,7 @@ function UploadFile() {
         console.log('Upload is running');
         break;
     }
+    alert ("Upload is completed");
   }, function(error) {
     // Handle unsuccessful uploads
     alert("Upload Error");

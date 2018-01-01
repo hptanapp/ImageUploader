@@ -4,13 +4,14 @@
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 <script type="text/javascript" src="js/connectFirebaseAPI.js"></script>
 <script type="text/javascript" src="js/imageHandler.js"></script>
+<script type="text/javascript" src="js/submitForms.js"></script>
 
 <script type="text/javascript">
 
-  var list_subkey = ["Name",
-                    "Email",
-                    "Date",
-                    "Type"
+  var list_subkey = ["Submitter_Name",
+                    "Submitter_Email",
+                    "Submitter_Date",
+                    "Submitter_Type"
                     ]
   var list_cardkey = ["Name",
                       "CompanyName",
@@ -23,55 +24,172 @@
                       "AdditionalTags"
                       ]
 
-  function prepareUploadSubForm(){
-    for (i = 0; i < list_subkey.length; i++) { 
-      var mykey = list_subkey[i];
-      var label = document.createElement("label");
-      label.setAttribute('for', mykey);
-      label.innerHTML = mykey + ":";
-      var input = document.createElement("input");
-      input.setAttribute('type', 'text');
-      input.setAttribute('id', mykey);
-      var br = document.createElement("br");
-      
-      var parent = document.getElementById("SubmitterInfoPlaceholder");
-      parent.appendChild(label);
-      parent.appendChild(input);
-      parent.appendChild(br);
-    }
-    var thisformbutton = document.getElementById("btn_prepareUploadSubForm");
-    thisformbutton.style.visibility = "hidden";
-  }
-
-  function prepareUploadCardForm(){
-    for (i = 0; i < list_cardkey.length; i++) { 
-      var mykey = list_cardkey[i];
-      var label = document.createElement("label");
-      label.setAttribute('for', mykey);
-      label.innerHTML = mykey + ":";
-      var input = document.createElement("input");
-      input.setAttribute('type', 'text');
-      input.setAttribute('id', mykey);
-      var br = document.createElement("br");
-      
-      var parent = document.getElementById("CardInfoPlaceholder");
-      parent.appendChild(label);
-      parent.appendChild(input);
-      parent.appendChild(br);
-    }
-    var thisformbutton = document.getElementById("btn_prepareUploadCardForm");
-    thisformbutton.style.visibility = "hidden";
-  }
+  var list_db = [ "Submitter_Name",
+                  "Submitter_Email",
+                  "Submitter_Date",
+                  "Submitter_Type",
+                  "Name",
+                  "CompanyName",
+                  "ServiceField",
+                  "Position",
+                  "Contact",
+                  "Address",
+                  "WorkingHour",
+                  "CoverageArea",
+                  "AdditionalTags"
+                ]
 
   //Firebase Database Handling
   function writeUserData(userId, name, email) {
     var dbtype = "userbase";
-    firebase.database().ref('users/' + userId).set({
-      type: "dbtype",
-      username: name,
-      email: email
-    });
+
+    var Submitter_Name;
+    var Submitter_Email;
+    var Submitter_Date;
+    var Submitter_Type;
+
+    var Name;
+    var CompanyName;
+    var ServiceField;
+    var Position;
+    var Contact;
+    var Address;
+    var WorkingHour;
+    var CoverageArea;
+    var AdditionalTags;
+
+    // Submitter_Name
+    var intextbox = document.getElementById("Submitter_Name");
+    if (intextbox.value != ""){
+      Submitter_Name = intextbox.value;
+    } else {
+      Submitter_Name = "guest";
+    }
+
+    // Submitter_Email
+    var intextbox = document.getElementById("Submitter_Email");
+    if (intextbox.value != ""){
+      Submitter_Email = intextbox.value;
+    } else {
+      Submitter_Email = "-";
+    }
+
+    // Submitter_Date
+    var d = new Date();
+    Submitter_Date = ISODateString(d);
+
+    // Submitter_Email
+    var intextbox = document.getElementById("Submitter_Type");
+    if (intextbox.value != ""){
+      Submitter_Type = intextbox.value;
+    } else {
+      Submitter_Type = "public";
+    }
+
+    // Name
+    var intextbox = document.getElementById("Name");
+    if (intextbox.value != ""){
+      Name = intextbox.value;
+    } else {
+      Name = "-";
+    }
+
+    // CompanyName
+    var intextbox = document.getElementById("CompanyName");
+    if (intextbox.value != ""){
+      CompanyName = intextbox.value;
+    } else {
+      CompanyName = "-";
+    }
+
+    // ServiceField
+    var intextbox = document.getElementById("ServiceField");
+    if (intextbox.value != ""){
+      ServiceField = intextbox.value;
+    } else {
+      ServiceField = "-";
+    }
+
+    // Position
+    var intextbox = document.getElementById("Position");
+    if (intextbox.value != ""){
+      Position = intextbox.value;
+    } else {
+      Position = "-";
+    }
+
+    // Contact
+    var intextbox = document.getElementById("Contact");
+    if (intextbox.value != ""){
+      Contact = intextbox.value;
+    } else {
+      Contact = "-";
+    }
+
+    // Address
+    var intextbox = document.getElementById("Address");
+    if (intextbox.value != ""){
+      Address = intextbox.value;
+    } else {
+      Address = "-";
+    }
+
+    // WorkingHour
+    var intextbox = document.getElementById("WorkingHour");
+    if (intextbox.value != ""){
+      WorkingHour = intextbox.value;
+    } else {
+      WorkingHour = "-";
+    }
+
+    // CoverageArea
+    var intextbox = document.getElementById("CoverageArea");
+    if (intextbox.value != ""){
+      CoverageArea = intextbox.value;
+    } else {
+      CoverageArea = "-";
+    }
+
+    // AdditionalTags
+    var intextbox = document.getElementById("AdditionalTags");
+    if (intextbox.value != ""){
+      AdditionalTags = intextbox.value;
+    } else {
+      AdditionalTags = "-";
+    }
+
+    alert("Submitter_Name = " + Submitter_Name);
+    alert("Submitter_Email = " + Submitter_Email);
+    alert("Submitter_Date = " + Submitter_Date);
+    alert("Submitter_Type = " + Submitter_Type);
+
+    alert("Name = " + Name);
+    alert("CompanyName = " + CompanyName);
+    alert("ServiceField = " + ServiceField);
+    alert("Position = " + Position);
+
+    alert("Contact = " + Contact);
+    alert("Address = " + Address);
+    alert("WorkingHour = " + WorkingHour);
+    alert("CoverageArea = " + CoverageArea);
+
+    // firebase.database().ref('users/' + userId).set({
+    //   type: "dbtype",
+    //   username: name,
+    //   email: email
+    // });
   }
+
+  // UTC time
+  function ISODateString(d) {
+    function pad(n) {return n<10 ? '0'+n : n}
+    return d.getUTCFullYear()+'-'
+         + pad(d.getUTCMonth()+1)+'-'
+         + pad(d.getUTCDate())+'T'
+         + pad(d.getUTCHours())+':'
+         + pad(d.getUTCMinutes())+':'
+         + pad(d.getUTCSeconds())+'Z'
+}
 
 </script>
 
@@ -101,7 +219,8 @@
     <br/>
     <br/>
   <div>
-    <button class="cls_button1" onclick="UploadFile()">Upload</button>
+    <!-- <button class="cls_button1" onclick="UploadFile()">Upload</button> -->
+    <button class="cls_button1" onclick="writeUserData()">Upload</button>
   </div>
 
   <br/>
