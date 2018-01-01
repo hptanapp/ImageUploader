@@ -39,6 +39,8 @@
       parent.appendChild(input);
       parent.appendChild(br);
     }
+    var thisformbutton = document.getElementById("btn_prepareUploadSubForm");
+    thisformbutton.style.visibility = "hidden";
   }
 
   function prepareUploadCardForm(){
@@ -57,6 +59,8 @@
       parent.appendChild(input);
       parent.appendChild(br);
     }
+    var thisformbutton = document.getElementById("btn_prepareUploadCardForm");
+    thisformbutton.style.visibility = "hidden";
   }
 
   //Firebase Database Handling
@@ -85,11 +89,11 @@
   </div>
     
     <h2>Submitter Information:</h2>
-    <button class="cls_button_pre" onclick="prepareUploadSubForm()">Prepare Upload Submitter Information</button>
+    <button class="cls_button_pre" id="btn_prepareUploadSubForm" onclick="prepareUploadSubForm()">Prepare Upload Submitter Information</button>
     <div id="SubmitterInfoPlaceholder"></div>
     
     <h2>Card Information:</h2>
-    <button class="cls_button_pre" onclick="prepareUploadCardForm()">Prepare Card Information</button>
+    <button class="cls_button_pre" id="btn_prepareUploadCardForm" onclick="prepareUploadCardForm()">Prepare Card Information</button>
     <div id="CardInfoPlaceholder"></div>
 
     <br/>
