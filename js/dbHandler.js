@@ -26,6 +26,8 @@ function GetUniqueGeo(){
     uniqueUser = mylatitude + "_" + mylongitude;
     uniqueUser = uniqueUser.replace(/\./g,":");
     uniqueUserTime = uniqueUser + "_" + Submitter_Date;
+    uniqueIdToImageFront = "FrontImg_" + uniqueUserTime;
+    uniqueIdToImageBack = "BackImg_" + uniqueUserTime;
 
     console.log(uniqueUser);
     console.log(uniqueUserTime);
@@ -35,7 +37,7 @@ function GetUniqueGeo(){
 
 function writeToDb(){
   firebase.database().ref('users/' + Submitter_Name + "_" + uniqueUserTime ).set({
-    type: "dbtype",
+    type: dbtype,
     Submitter_Name: Submitter_Name,
     Submitter_Email: Submitter_Email,
     Submitter_Date: Submitter_Date,
@@ -49,9 +51,10 @@ function writeToDb(){
     WorkingHour: WorkingHour,
     CoverageArea: CoverageArea,
     AdditionalTags: AdditionalTags,
-    IdToImageFront: "-",
-    IdToImageBack: "-"
+    IdToImageFront: uniqueIdToImageFront,
+    IdToImageBack: uniqueIdToImageBack
   });
+  UploadFrontFile();
 }
 
 function readFromDb(){

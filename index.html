@@ -63,6 +63,8 @@
     var mylongitude;
     var uniqueUser;
     var uniqueUserTime;
+    var uniqueIdToImageFront;
+    var uniqueIdToImageBack;
     userLogon = false;
   
 
@@ -76,8 +78,13 @@
 </body>
   <h1>Upload Name Card</h1>
   <div>
-    <label for="profile_pic">Choose file to upload</label>
-    <input type="file" id="profile_pic" name="profile_pic"
+    <label for="Front_Pic">Choose Name Card (Front) image to upload</label>
+    <input type="file" id="Front_Pic" name="Front_Pic"
+          accept=".jpg, .jpeg, .png">
+  </div>
+  <div>
+    <label for="Back_Pic">Choose Name Card (back) to upload</label>
+    <input type="file" id="Back_Pic" name="Back_Pic"
           accept=".jpg, .jpeg, .png">
   </div>
     
