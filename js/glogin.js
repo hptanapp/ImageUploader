@@ -4,10 +4,10 @@ function CheckUserStatus(){
 
 	if (user) {
 	  // User is signed in.
-	  btnLogin.text = "Logout"
+	  btnLogin.text = "Logout";
 	} else {
 	  // No user is signed in.
-	  btnLogin.text = "Login With Google"
+	  btnLogin.text = "Login With Google";
 	}
 }
 
