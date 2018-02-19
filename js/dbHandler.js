@@ -1,7 +1,7 @@
 function Upload(){
   console.log("Upload ...");
 
-  if (user){
+  if (userLogon){
     // get user.uid
     uniqueUser = user.uid;
     GetUniqueFilesName();
