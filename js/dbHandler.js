@@ -1,8 +1,9 @@
 function Upload(){
   console.log("Upload ...");
-  
-  if (userLogon){
 
+  if (userLogon){
+    // get user.uid
+    uniqueUser = user.uid;
   }
   else{
     GetUniqueGeo();
@@ -29,14 +30,25 @@ function GetUniqueGeo(){
 
     uniqueUser = mylatitude + "_" + mylongitude;
     uniqueUser = uniqueUser.replace(/\./g,":");
-    uniqueUserTime = uniqueUser + "_" + Submitter_Date;
-    uniqueIdToImageFront = "FrontImg_" + uniqueUserTime;
-    uniqueIdToImageBack = "BackImg_" + uniqueUserTime;
 
-    console.log(uniqueUser);
-    console.log(uniqueUserTime);
-    writeToDb();
+    GetUniqueFilesName();
   });
+}
+
+function GetUniqueFilesName(){
+  console.log("GetUniqueFilesName ...");
+
+  uniqueUserTime = uniqueUser + "_" + Submitter_Date;
+  uniqueIdToImageFront = "FrontImg_" + uniqueUserTime;
+  uniqueIdToImageBack = "BackImg_" + uniqueUserTime;
+
+  console.log(uniqueUser);
+  console.log(uniqueUserTime);
+  console.log(uniqueIdToImageFront);
+  console.log(uniqueIdToImageBack);
+  
+  return null;
+  //writeToDb(); //tba comment to debug
 }
 
 function writeToDb(){

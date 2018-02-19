@@ -1,0 +1,1 @@
+var TermsNConditionWarning_Eng = "Terms And Condition is not checked. \nKindly read and check for the terms if you wish to continue."

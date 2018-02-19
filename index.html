@@ -1,125 +1,133 @@
 <!DOCTYPE html>
 <html>
 
-<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="js/connectFirebaseAPI.js"></script>
-<script type="text/javascript" src="js/imageHandler.js"></script>
-<script type="text/javascript" src="js/submitForms.js"></script>
-<script type="text/javascript" src="js/dbHandler.js"></script>
-<script type="text/javascript" src="js/glogin.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/connectFirebaseAPI.js"></script>
+  <script type="text/javascript" src="js/Constants.js"></script>
+  <script type="text/javascript" src="js/imageHandler.js"></script>
+  <script type="text/javascript" src="js/submitForms.js"></script>
+  <script type="text/javascript" src="js/dbHandler.js"></script>
+  <script type="text/javascript" src="js/glogin.js"></script>
 
-<link rel="stylesheet" href="css/buttons-si.css">
+  <link rel="stylesheet" href="css/buttons-si.css">
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-  var list_subkey = ["Submitter_Name",
+    var list_subkey = ["Submitter_Name",
+                      "Submitter_Email",
+                      "Submitter_Date",
+                      "Submitter_Type"
+                      ]
+    var list_cardkey = ["Name",
+                        "CompanyName",
+                        "ServiceField",
+                        "Position",
+                        "Contact",
+                        "Address",
+                        "WorkingHour",
+                        "CoverageArea",
+                        "AdditionalTags"
+                        ]
+
+    var list_db = [ "Submitter_Name",
                     "Submitter_Email",
                     "Submitter_Date",
-                    "Submitter_Type"
-                    ]
-  var list_cardkey = ["Name",
-                      "CompanyName",
-                      "ServiceField",
-                      "Position",
-                      "Contact",
-                      "Address",
-                      "WorkingHour",
-                      "CoverageArea",
-                      "AdditionalTags"
-                      ]
+                    "Submitter_Type",
+                    "Name",
+                    "CompanyName",
+                    "ServiceField",
+                    "Position",
+                    "Contact",
+                    "Address",
+                    "WorkingHour",
+                    "CoverageArea",
+                    "AdditionalTags"
+                  ]
 
-  var list_db = [ "Submitter_Name",
-                  "Submitter_Email",
-                  "Submitter_Date",
-                  "Submitter_Type",
-                  "Name",
-                  "CompanyName",
-                  "ServiceField",
-                  "Position",
-                  "Contact",
-                  "Address",
-                  "WorkingHour",
-                  "CoverageArea",
-                  "AdditionalTags"
-                ]
+    var dbtype = "userbase";
 
-  var dbtype = "userbase";
+    var Submitter_Name;
+    var Submitter_Email;
+    var Submitter_Date;
+    var Submitter_Type;
 
-  var Submitter_Name;
-  var Submitter_Email;
-  var Submitter_Date;
-  var Submitter_Type;
+    var Name;
+    var CompanyName;
+    var ServiceField;
+    var Position;
+    var Contact;
+    var Address;
+    var WorkingHour;
+    var CoverageArea;
+    var AdditionalTags;
 
-  var Name;
-  var CompanyName;
-  var ServiceField;
-  var Position;
-  var Contact;
-  var Address;
-  var WorkingHour;
-  var CoverageArea;
-  var AdditionalTags;
+    var userLogon;
+    var mylatitude;
+    var mylongitude;
+    var uniqueUser;
+    var uniqueUserTime;
+    var uniqueIdToImageFront;
+    var uniqueIdToImageBack;
+    userLogon = false;
 
-  var userLogon;
-  var mylatitude;
-  var mylongitude;
-  var uniqueUser;
-  var uniqueUserTime;
-  var uniqueIdToImageFront;
-  var uniqueIdToImageBack;
-  userLogon = false;
+    function OnLoadFunc(){
+      CheckUserStatus();
+    }
+  </script>
 
-  function OnLoadFunc(){
-    CheckUserStatus();
-  }
-</script>
-
-<head>
-	<title>This is Title</title>
-</head>
+  <head>
+  	<title>This is Title</title>
+  </head>
   <body onload="OnLoadFunc()">
   	<h1>Welcome to My App</h1>
     <button class="btn-si btn-google" id="btn_login" onclick="GoogleSignInOut()">login with Google</button>
-    <h1>Upload Name Card</h1>
-    <div>
-      <label for="Front_Pic">Choose Name Card (Front) image to upload</label>
-      <input type="file" id="Front_Pic" name="Front_Pic"
-            accept=".jpg, .jpeg, .png">
-    </div>
-    <div>
-      <label for="Back_Pic">Choose Name Card (back) to upload</label>
-      <input type="file" id="Back_Pic" name="Back_Pic"
-            accept=".jpg, .jpeg, .png">
-    </div>
-      
-      <h2>Submitter Information:</h2>
-      <button class="cls_button_pre" id="btn_prepareUploadSubForm" onclick="prepareUploadSubForm()">Prepare Upload Submitter Information</button>
-      <div id="SubmitterInfoPlaceholder"></div>
-      
-      <h2>Card Information:</h2>
-      <button class="cls_button_pre" id="btn_prepareUploadCardForm" onclick="prepareUploadCardForm()">Prepare Card Information</button>
-      <div id="CardInfoPlaceholder"></div>
 
-      <br/>
-      <input id="chkbx_TermsNCond" type="checkbox" name="T=terms">I hereby giving information consent to this web application for items and information I have submitted.
-      <br/>
-      <br/>
-    <div>
-      <!-- <button class="cls_button1" onclick="UploadFile()">Upload</button> -->
-      <button class="cls_button1" onclick="writeUserData()">Upload</button>
+    <button class="cls_button_pre" id="btn_prepareUploadSubForm" onclick="prepareUploadSubForm(); prepareUploadCardForm()">I want to add NameCard</button>
+
+    <button class="cls_button_pre" id="btn_prepareSearchForm" onclick="prepareSearchForm()">Search For NameCard</button>
+
+    <div id=UploadForm style="visibility: hidden;">
+      <h1>Upload Name Card</h1>
+      <div>
+        <label for="Front_Pic">Choose Name Card (Front) image to upload</label>
+        <input type="file" id="Front_Pic" name="Front_Pic"
+              accept=".jpg, .jpeg, .png">
+      </div>
+      <div>
+        <label for="Back_Pic">Choose Name Card (back) to upload</label>
+        <input type="file" id="Back_Pic" name="Back_Pic"
+              accept=".jpg, .jpeg, .png">
+      </div>
+        
+        <h2>Submitter Information:</h2>
+        <div id="SubmitterInfoPlaceholder"></div>
+        
+        <h2>Card Information:</h2>
+        <div id="CardInfoPlaceholder"></div>
+
+        <br/>
+        <input id="chkbx_TermsNCond" type="checkbox" name="Terms">I hereby giving information consent to this service for items and information I have submitted, and allowing them able to be published into publicity.
+        <br/>
+        <br/>
+      <div>
+        <!-- <button class="cls_button1" onclick="UploadFile()">Upload</button> -->
+        <button class="cls_button1" onclick="writeUserData()">Upload</button>
+      </div>
     </div>
 
-    <br/>
-    <h1>Search For Name Card</h1>
-    <div>
-      <button class="cls_button2" onclick="showimage()">Search</button>
-    </div>
-    <div>
-      <input type="text" id="filter" name="filter">
-    </div>
-    <div>
-      <img id="showimage" src="" height="125px" width="200px" style="visibility: hidden;" />
+    <div id="SearchForm" style="visibility: hidden;">
+      <br/>
+      <h1>Search For Name Card</h1>
+      <div>
+        <button class="cls_button2" onclick="showimage()">Search</button>
+      </div>
+      <div>
+        <input type="text" id="filter" name="filter">
+      </div>
+      <div>
+        <img id="showimage" src="" height="125px" width="200px" style="visibility: hidden;" />
+      </div>
     </div>
   </body>
 
@@ -127,5 +135,9 @@
     // Initialize frequent used elements
     var btnLogin = document.getElementById ("btn_login");
     var chkbxTermsNCond = document.getElementById ("chkbx_TermsNCond");
+    var frmUploadForm = document.getElementById ("UploadForm");
+    var frmSearchForm = document.getElementById ("SearchForm");
+    var btnUploadformbutton = document.getElementById("btn_prepareUploadSubForm");
+    var btnSearchformbutton = document.getElementById("btn_prepareSearchForm");
   </script>
 </html>

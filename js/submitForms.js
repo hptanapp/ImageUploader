@@ -1,6 +1,9 @@
 function prepareUploadSubForm(){
   console.log("prepareUploadSubForm ...");
 
+  frmUploadForm.style.visibility = "visible";
+  btnUploadformbutton.style.visibility = "hidden";
+
   for (i = 0; i < list_subkey.length; i++) { 
     var mykey = list_subkey[i];
     var label = document.createElement("label");
@@ -16,8 +19,6 @@ function prepareUploadSubForm(){
     parent.appendChild(input);
     parent.appendChild(br);
   }
-  var thisformbutton = document.getElementById("btn_prepareUploadSubForm");
-  thisformbutton.style.visibility = "hidden";
 }
 
 function prepareUploadCardForm(){
@@ -38,8 +39,13 @@ function prepareUploadCardForm(){
     parent.appendChild(input);
     parent.appendChild(br);
   }
-  var thisformbutton = document.getElementById("btn_prepareUploadCardForm");
-  thisformbutton.style.visibility = "hidden";
+}
+
+function prepareSearchForm(){
+  console.log("prepareSearchForm ...");
+
+  frmSearchForm.style.visibility = "visible";
+  btnSearchformbutton.style.visibility = "hidden";
 }
 
 // UTC time
@@ -56,13 +62,12 @@ function ISODateString(d) {
 //Get Form info
 function writeUserData() {
   console.log("writeUserData ...");
-  
+
   // validate inputs
   if (!chkbxTermsNCond.checked){
-    alert("Terms And Condition is not checked");
+    alert(TermsNConditionWarning_Eng);
     return null;
   }
-  return null; 
 
   // Submitter_Name
   var intextbox = document.getElementById("Submitter_Name");
