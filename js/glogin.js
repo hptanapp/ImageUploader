@@ -6,10 +6,10 @@ function CheckUserStatus(){
 	  // User is signed in.
 	  btnLogin.innerHTML = "Logout";
 	  if ( btnLogin.classList.contains('btn-google') ){
-	  	btnLogin.classList.remove('btn-google');
+	  	//btnLogin.classList.remove('btn-google');
 	  }
 	  if ( btnLogin.classList.contains('btn-si') ){
-	  	btnLogin.classList.remove('btn-si');
+	  	//btnLogin.classList.remove('btn-si');
 	  }
 	} else {
 	  // No user is signed in.
