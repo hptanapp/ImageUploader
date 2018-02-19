@@ -23,7 +23,6 @@ function GoogleSignInOut() {
 	  console.log("Logging In");
 	  GoogleSignIn();
 	}
-	CheckUserStatus();
 }
 
 function GoogleSignIn(){
@@ -35,6 +34,7 @@ function GoogleSignIn(){
 	  // The signed-in user info.
 	  var user = result.user;
 	  // ...
+	  CheckUserStatus();
 	}).catch(function(error) {
 	  // Handle Errors here.
 	  var errorCode = error.code;
@@ -51,6 +51,7 @@ function GoogleSignIn(){
 function GoogleSignOut() {
 	firebase.auth().signOut().then(function() {
 	  // Sign-out successful.
+	  CheckUserStatus();
 	}).catch(function(error) {
 	  // An error happened.
 	});
