@@ -1,6 +1,5 @@
 function CheckUserStatus(){
 	user = firebase.auth().currentUser;
-	console.log(user);
 
 	if (user) {
 	  // User is signed in.
@@ -31,11 +30,9 @@ function GoogleSignInOut() {
 	user = firebase.auth().currentUser;
 	if (user) {
 	  // User is signed in.
-	  console.log("Logging Out");
 	  GoogleSignOut();
 	} else {
 	  // No user is signed in.
-	  console.log("Logging In");
 	  GoogleSignIn();
 	}
 }
@@ -69,5 +66,6 @@ function GoogleSignOut() {
 	  CheckUserStatus();
 	}).catch(function(error) {
 	  // An error happened.
+	  alert("Sign Out Failed. Please try again.");
 	});
 }
