@@ -1,6 +1,8 @@
 // For image handling & functions
 
 function UploadFrontFile() {
+  console.log("UploadFrontFile ...");
+
   input = document.getElementById('Front_Pic');
   thisFile = input.files[0];
   if (thisFile != null){
@@ -50,6 +52,8 @@ function UploadFrontFile() {
 }
 
 function UploadBackFile() {
+  console.log("UploadBackFile ...");
+
   input = document.getElementById('Back_Pic');
   thisFile = input.files[0];
   if (thisFile != null){
@@ -99,6 +103,8 @@ function UploadBackFile() {
 
 
 function showimage() {
+  console.log("showimage ...");
+  
    var storageRef = firebase.storage().ref();
    var Filter = document.getElementById ("filter");
    var filterString = Filter.value;

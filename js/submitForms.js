@@ -1,4 +1,6 @@
 function prepareUploadSubForm(){
+  console.log("prepareUploadSubForm ...");
+
   for (i = 0; i < list_subkey.length; i++) { 
     var mykey = list_subkey[i];
     var label = document.createElement("label");
@@ -19,6 +21,8 @@ function prepareUploadSubForm(){
 }
 
 function prepareUploadCardForm(){
+  console.log("prepareUploadCardForm ...");
+
   for (i = 0; i < list_cardkey.length; i++) { 
     var mykey = list_cardkey[i];
     var label = document.createElement("label");
@@ -51,6 +55,15 @@ function ISODateString(d) {
 
 //Get Form info
 function writeUserData() {
+  console.log("writeUserData ...");
+  
+  // validate inputs
+  if (!chkbxTermsNCond.checked){
+    alert("Terms And Condition is not checked");
+    return null;
+  }
+  return null; 
+
   // Submitter_Name
   var intextbox = document.getElementById("Submitter_Name");
   if (intextbox.value != ""){

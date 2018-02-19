@@ -1,4 +1,6 @@
 function Upload(){
+  console.log("Upload ...");
+  
   if (userLogon){
 
   }
@@ -8,6 +10,8 @@ function Upload(){
 }
 
 function GetUniqueGeo(){
+  console.log("GetUniqueGeo ...");
+
   $.getJSON('https://www.freegeoip.net/json/?callback=?', function(data) {
     console.log(JSON.stringify(data, null, 2));
     retString = JSON.stringify(data, null, 2);
@@ -36,6 +40,8 @@ function GetUniqueGeo(){
 }
 
 function writeToDb(){
+  console.log("writeToDb ...");
+
   firebase.database().ref('users/' + Submitter_Name + "_" + uniqueUserTime ).set({
     type: dbtype,
     Submitter_Name: Submitter_Name,
@@ -58,6 +64,8 @@ function writeToDb(){
 }
 
 function readFromDb(){
+  console.log("readFromDb ...");
+
   var userId = firebase.auth().currentUser.uid;
   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
     var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
