@@ -4,7 +4,7 @@ function CheckUserStatus(){
 
 	if (user) {
 	  // User is signed in.
-	  btnLogin.innerHTML = "Logout";
+	  btnLogin.innerHTML = "Sign Out";
 	  if ( btnLogin.classList.contains('btn-google') ){
 	  	//btnLogin.classList.remove('btn-google');
 	  }
@@ -13,7 +13,7 @@ function CheckUserStatus(){
 	  }
 	} else {
 	  // No user is signed in.
-	  btnLogin.innerHTML = "Login With Google";
+	  btnLogin.innerHTML = "Sign in With Google";
 	  if ( btnLogin.classList.contains('btn-google') ){
   		// nothing
 	  } else {
