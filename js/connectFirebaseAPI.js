@@ -1,4 +1,6 @@
 // Initialize Firebase & Connect FireBase API
+//hptanappads
+
 var config = {
   apiKey: "AIzaSyBvEgDexqUNE0nO_ZE9zJhcb3zSDrm_8Nw",
   authDomain: "imageuploader-3b27c.firebaseapp.com",

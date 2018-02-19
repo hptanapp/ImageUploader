@@ -7,6 +7,7 @@
 <script type="text/javascript" src="js/imageHandler.js"></script>
 <script type="text/javascript" src="js/submitForms.js"></script>
 <script type="text/javascript" src="js/dbHandler.js"></script>
+<script type="text/javascript" src="js/glogin.js"></script>
 
 <script type="text/javascript">
 
@@ -73,47 +74,48 @@
 <head>
 	<title>This is Title</title>
 </head>
-<body>
-	<h1>Welcome to My App</h1>
-</body>
-  <h1>Upload Name Card</h1>
-  <div>
-    <label for="Front_Pic">Choose Name Card (Front) image to upload</label>
-    <input type="file" id="Front_Pic" name="Front_Pic"
-          accept=".jpg, .jpeg, .png">
-  </div>
-  <div>
-    <label for="Back_Pic">Choose Name Card (back) to upload</label>
-    <input type="file" id="Back_Pic" name="Back_Pic"
-          accept=".jpg, .jpeg, .png">
-  </div>
-    
-    <h2>Submitter Information:</h2>
-    <button class="cls_button_pre" id="btn_prepareUploadSubForm" onclick="prepareUploadSubForm()">Prepare Upload Submitter Information</button>
-    <div id="SubmitterInfoPlaceholder"></div>
-    
-    <h2>Card Information:</h2>
-    <button class="cls_button_pre" id="btn_prepareUploadCardForm" onclick="prepareUploadCardForm()">Prepare Card Information</button>
-    <div id="CardInfoPlaceholder"></div>
+  <body>
+  	<h1>Welcome to My App</h1>
+    <button id="btn_login" onclick="GoogleSignIn()">login with Google</button>
+    <h1>Upload Name Card</h1>
+    <div>
+      <label for="Front_Pic">Choose Name Card (Front) image to upload</label>
+      <input type="file" id="Front_Pic" name="Front_Pic"
+            accept=".jpg, .jpeg, .png">
+    </div>
+    <div>
+      <label for="Back_Pic">Choose Name Card (back) to upload</label>
+      <input type="file" id="Back_Pic" name="Back_Pic"
+            accept=".jpg, .jpeg, .png">
+    </div>
+      
+      <h2>Submitter Information:</h2>
+      <button class="cls_button_pre" id="btn_prepareUploadSubForm" onclick="prepareUploadSubForm()">Prepare Upload Submitter Information</button>
+      <div id="SubmitterInfoPlaceholder"></div>
+      
+      <h2>Card Information:</h2>
+      <button class="cls_button_pre" id="btn_prepareUploadCardForm" onclick="prepareUploadCardForm()">Prepare Card Information</button>
+      <div id="CardInfoPlaceholder"></div>
+
+      <br/>
+      <input type="checkbox" name="vehicle" value="Car">I hereby giving information consent to this web application for items and information I have submitted.
+      <br/>
+      <br/>
+    <div>
+      <!-- <button class="cls_button1" onclick="UploadFile()">Upload</button> -->
+      <button class="cls_button1" onclick="writeUserData()">Upload</button>
+    </div>
 
     <br/>
-    <input type="checkbox" name="vehicle" value="Car">I hereby giving information consent to this web application for items and information I have submitted.
-    <br/>
-    <br/>
-  <div>
-    <!-- <button class="cls_button1" onclick="UploadFile()">Upload</button> -->
-    <button class="cls_button1" onclick="writeUserData()">Upload</button>
-  </div>
-
-  <br/>
-  <h1>Search For Name Card</h1>
-  <div>
-    <button class="cls_button2" onclick="showimage()">Search</button>
-  </div>
-  <div>
-    <input type="text" id="filter" name="filter">
-  </div>
-  <div>
-    <img id="showimage" src="" height="125px" width="200px" style="visibility: hidden;" />
-  </div>
+    <h1>Search For Name Card</h1>
+    <div>
+      <button class="cls_button2" onclick="showimage()">Search</button>
+    </div>
+    <div>
+      <input type="text" id="filter" name="filter">
+    </div>
+    <div>
+      <img id="showimage" src="" height="125px" width="200px" style="visibility: hidden;" />
+    </div>
+  </body>
 </html>
