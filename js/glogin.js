@@ -5,9 +5,17 @@ function CheckUserStatus(){
 	if (user) {
 	  // User is signed in.
 	  btnLogin.innerHTML = "Logout";
+	  if ( btnLogin.classList.contains('g-signin2') ){
+	  	btnLogin.classList.remove('g-signin2');
+	  }
 	} else {
 	  // No user is signed in.
 	  btnLogin.innerHTML = "Login With Google";
+	  if ( btnLogin.classList.contains('g-signin2') ){
+  		// nothing
+	  } else {
+	  	btnLogin.classList.add('g-signin2');
+	  }
 	}
 }
 
