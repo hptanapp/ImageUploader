@@ -1,3 +1,16 @@
+function CheckUserStatus(){
+	var user = firebase.auth().currentUser;
+	var btnLogin = document.getElementById ("btn_login");
+
+	if (user) {
+	  // User is signed in.
+	  btnLogin.text = "Logout"
+	} else {
+	  // No user is signed in.
+	  btnLogin.text = "Login With Google"
+	}
+}
+
 function GoogleSignIn() {
 	var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -18,6 +31,7 @@ function GoogleSignIn() {
 	  alert(errorMessage);
 	  // ...
 	});
+	CheckUserStatus();
 }
 
 function GoogleSignOut() {
@@ -26,4 +40,5 @@ function GoogleSignOut() {
 	}).catch(function(error) {
 	  // An error happened.
 	});
+	CheckUserStatus();
 }
