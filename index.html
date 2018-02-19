@@ -42,39 +42,41 @@
                   "AdditionalTags"
                 ]
 
-    var dbtype = "userbase";
+  var dbtype = "userbase";
 
-    var Submitter_Name;
-    var Submitter_Email;
-    var Submitter_Date;
-    var Submitter_Type;
+  var Submitter_Name;
+  var Submitter_Email;
+  var Submitter_Date;
+  var Submitter_Type;
 
-    var Name;
-    var CompanyName;
-    var ServiceField;
-    var Position;
-    var Contact;
-    var Address;
-    var WorkingHour;
-    var CoverageArea;
-    var AdditionalTags;
+  var Name;
+  var CompanyName;
+  var ServiceField;
+  var Position;
+  var Contact;
+  var Address;
+  var WorkingHour;
+  var CoverageArea;
+  var AdditionalTags;
 
-    var userLogon;
-    var mylatitude;
-    var mylongitude;
-    var uniqueUser;
-    var uniqueUserTime;
-    var uniqueIdToImageFront;
-    var uniqueIdToImageBack;
-    userLogon = false;
-  
+  var userLogon;
+  var mylatitude;
+  var mylongitude;
+  var uniqueUser;
+  var uniqueUserTime;
+  var uniqueIdToImageFront;
+  var uniqueIdToImageBack;
+  userLogon = false;
 
+  OnLoadFunc(){
+    CheckUserStatus();
+  }
 </script>
 
 <head>
 	<title>This is Title</title>
 </head>
-  <body>
+  <body onload="OnLoadFunc()">
   	<h1>Welcome to My App</h1>
     <button id="btn_login" onclick="GoogleSignIn()">login with Google</button>
     <h1>Upload Name Card</h1>
