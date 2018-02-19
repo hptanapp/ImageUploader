@@ -16,3 +16,6 @@ var storage = firebase.storage();
 
 // Get a reference to the database service
 var database = firebase.database();
+
+// Get a current user
+var user = firebase.auth().currentUser;

@@ -1,5 +1,5 @@
 function CheckUserStatus(){
-	var user = firebase.auth().currentUser;
+	user = firebase.auth().currentUser;
 	var btnLogin = document.getElementById ("btn_login");
 	console.log(user);
 
@@ -13,12 +13,14 @@ function CheckUserStatus(){
 }
 
 function GoogleSignInOut() {
-	var user = firebase.auth().currentUser;
+	user = firebase.auth().currentUser;
 	if (user) {
 	  // User is signed in.
+	  console.log("Logging Out");
 	  GoogleSignOut();
 	} else {
 	  // No user is signed in.
+	  console.log("Logging In");
 	  GoogleSignIn();
 	}
 	CheckUserStatus();
