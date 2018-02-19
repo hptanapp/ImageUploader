@@ -12,7 +12,19 @@ function CheckUserStatus(){
 	}
 }
 
-function GoogleSignIn() {
+function GoogleSignInOut() {
+	var user = firebase.auth().currentUser;
+	if (user) {
+	  // User is signed in.
+	  GoogleSignOut();
+	} else {
+	  // No user is signed in.
+	  GoogleSignIn();
+	}
+	CheckUserStatus();
+}
+
+function GoogleSignIn(){
 	var provider = new firebase.auth.GoogleAuthProvider();
 
 	firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -32,7 +44,6 @@ function GoogleSignIn() {
 	  alert(errorMessage);
 	  // ...
 	});
-	CheckUserStatus();
 }
 
 function GoogleSignOut() {
@@ -41,5 +52,4 @@ function GoogleSignOut() {
 	}).catch(function(error) {
 	  // An error happened.
 	});
-	CheckUserStatus();
 }
