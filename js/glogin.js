@@ -5,16 +5,24 @@ function CheckUserStatus(){
 	if (user) {
 	  // User is signed in.
 	  btnLogin.innerHTML = "Logout";
-	  if ( btnLogin.classList.contains('g-signin2') ){
-	  	btnLogin.classList.remove('g-signin2');
+	  if ( btnLogin.classList.contains('btn-google') ){
+	  	btnLogin.classList.remove('btn-google');
+	  }
+	  if ( btnLogin.classList.contains('btn-si') ){
+	  	btnLogin.classList.remove('btn-si');
 	  }
 	} else {
 	  // No user is signed in.
 	  btnLogin.innerHTML = "Login With Google";
-	  if ( btnLogin.classList.contains('g-signin2') ){
+	  if ( btnLogin.classList.contains('btn-google') ){
   		// nothing
 	  } else {
-	  	btnLogin.classList.add('g-signin2');
+	  	btnLogin.classList.add('btn-google');
+	  }
+	  if ( btnLogin.classList.contains('btn-si') ){
+  		// nothing
+	  } else {
+	  	btnLogin.classList.add('btn-si');
 	  }
 	}
 }

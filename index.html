@@ -2,13 +2,14 @@
 <html>
 
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/connectFirebaseAPI.js"></script>
 <script type="text/javascript" src="js/imageHandler.js"></script>
 <script type="text/javascript" src="js/submitForms.js"></script>
 <script type="text/javascript" src="js/dbHandler.js"></script>
 <script type="text/javascript" src="js/glogin.js"></script>
+
+<link rel="stylesheet" href="css/buttons-si.css">
 
 <script type="text/javascript">
 
@@ -79,7 +80,7 @@
 </head>
   <body onload="OnLoadFunc()">
   	<h1>Welcome to My App</h1>
-    <button id="btn_login" onclick="GoogleSignInOut()">login with Google</button>
+    <button class="btn-si btn-google" id="btn_login" onclick="GoogleSignInOut()">login with Google</button>
     <h1>Upload Name Card</h1>
     <div>
       <label for="Front_Pic">Choose Name Card (Front) image to upload</label>
