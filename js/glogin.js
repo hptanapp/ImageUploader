@@ -1,6 +1,7 @@
 function CheckUserStatus(){
 	var user = firebase.auth().currentUser;
 	var btnLogin = document.getElementById ("btn_login");
+	console.log(user);
 
 	if (user) {
 	  // User is signed in.
