@@ -1,9 +1,10 @@
 function Upload(){
   console.log("Upload ...");
 
-  if (userLogon){
+  if (user){
     // get user.uid
     uniqueUser = user.uid;
+    GetUniqueFilesName();
   }
   else{
     GetUniqueGeo();
