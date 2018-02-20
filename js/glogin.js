@@ -4,11 +4,11 @@ function CheckUserStatus(){
 	if (user) {
 	  // User is signed in.
 	  btnLogin.innerHTML = "Sign Out";
-	  userLogon = false;
+	  userLogon = true;
 	} else {
 	  // No user is signed in.
 	  btnLogin.innerHTML = "Sign in With Google";
-	  userLogon = true;
+	  userLogon = false;
 	}
 }
 
