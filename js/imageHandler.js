@@ -110,6 +110,7 @@ function showimage() {
    var filterString = Filter.value;
    storageRef.child(filterString).getDownloadURL().then(function(url) {
        var test = url;
+       console.log(test);
        document.querySelector('img').src = test;
        var loading = document.getElementById ("showimage");
        loading.style.visibility = "visible";

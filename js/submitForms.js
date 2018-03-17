@@ -2,7 +2,16 @@ function prepareUploadSubForm(){
   console.log("prepareUploadSubForm ...");
 
   frmUploadForm.style.visibility = "visible";
-  btnUploadformbutton.style.visibility = "hidden";
+  frmUploadForm.style.height = "auto";
+  frmSearchForm.style.height = 0;
+  frmSearchForm.style.visibility = "hidden";
+  btnUploadformbutton.disabled = true;
+  btnSearchformbutton.disabled = false;
+
+  var childcount = divSubmitterInfoPlaceholder.childElementCount;
+  for (a=0; a<childcount; a++){
+    divSubmitterInfoPlaceholder.removeChild(divSubmitterInfoPlaceholder.firstChild);
+  }
 
   for (i = 0; i < list_subkey.length; i++) { 
     var mykey = list_subkey[i];
@@ -14,15 +23,19 @@ function prepareUploadSubForm(){
     input.setAttribute('id', mykey);
     var br = document.createElement("br");
     
-    var parent = document.getElementById("SubmitterInfoPlaceholder");
-    parent.appendChild(label);
-    parent.appendChild(input);
-    parent.appendChild(br);
+    divSubmitterInfoPlaceholder.appendChild(label);
+    divSubmitterInfoPlaceholder.appendChild(input);
+    divSubmitterInfoPlaceholder.appendChild(br);
   }
 }
 
 function prepareUploadCardForm(){
   console.log("prepareUploadCardForm ...");
+
+  var childcount = divCardInfoPlaceholder.childElementCount;
+  for (a=0; a<childcount; a++){
+    divCardInfoPlaceholder.removeChild(divCardInfoPlaceholder.firstChild);
+  }
 
   for (i = 0; i < list_cardkey.length; i++) { 
     var mykey = list_cardkey[i];
@@ -34,18 +47,22 @@ function prepareUploadCardForm(){
     input.setAttribute('id', mykey);
     var br = document.createElement("br");
     
-    var parent = document.getElementById("CardInfoPlaceholder");
-    parent.appendChild(label);
-    parent.appendChild(input);
-    parent.appendChild(br);
+    divCardInfoPlaceholder.appendChild(label);
+    divCardInfoPlaceholder.appendChild(input);
+    divCardInfoPlaceholder.appendChild(br);
   }
 }
 
 function prepareSearchForm(){
   console.log("prepareSearchForm ...");
 
+
+  frmUploadForm.style.visibility = "hidden";
+  frmUploadForm.style.height = 0;
+  frmSearchForm.style.height = "auto";
   frmSearchForm.style.visibility = "visible";
-  btnSearchformbutton.style.visibility = "hidden";
+  btnUploadformbutton.disabled = false;
+  btnSearchformbutton.disabled = true;
 }
 
 // UTC time

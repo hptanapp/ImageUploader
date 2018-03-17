@@ -87,7 +87,7 @@
 
     <button class="cls_button_pre" id="btn_prepareSearchForm" onclick="prepareSearchForm()">Search For NameCard</button>
 
-    <div id=UploadForm style="visibility: hidden;">
+    <div id=UploadForm style="visibility: hidden; height: 0px">
       <h1>Upload Name Card</h1>
       <div>
         <label for="Front_Pic">Choose Name Card (Front) image to upload</label>
@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <div id="SearchForm" style="visibility: hidden;">
+    <div id="SearchForm" style="visibility: hidden; height: 0px">
       <br/>
       <h1>Search For Name Card</h1>
       <div>
@@ -139,5 +139,7 @@
     var frmSearchForm = document.getElementById ("SearchForm");
     var btnUploadformbutton = document.getElementById("btn_prepareUploadSubForm");
     var btnSearchformbutton = document.getElementById("btn_prepareSearchForm");
+    var divSubmitterInfoPlaceholder = document.getElementById("SubmitterInfoPlaceholder");
+    var divCardInfoPlaceholder = document.getElementById("CardInfoPlaceholder");
   </script>
 </html>
